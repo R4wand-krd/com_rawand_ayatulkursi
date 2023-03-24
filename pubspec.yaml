@@ -1,0 +1,54 @@
+name: com_rawand_ayatulkursi
+description: A new Flutter project.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+version: 1.3.0+4
+
+environment:
+  sdk: ">=2.19.4 <3.0.0"
+
+# flutter pub upgrade --major-versions
+# flutter pub outdated
+dependencies:
+  flutter:
+    sdk: flutter
+
+  http: ^0.13.5
+  shared_preferences: ^2.0.18
+  url_launcher: ^6.1.10
+  url_strategy: ^0.2.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter_icons:
+  android: true
+  image_path_android: "assets/logo.png"
+
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/audio/ayatul-kursi.mp3
+    - assets/rawand.png
+    - assets/logo.png
+
+  fonts:
+    - family: Quran
+      fonts:
+        - asset: assets/fonts/quran.ttf
+    - family: Google
+      fonts:
+        - asset: assets/fonts/regular.ttf
+        - asset: assets/fonts/italic.ttf
+          style: italic
+        - asset: assets/fonts/bold.ttf
+          weight: 700
+    - family: Sahel
+      fonts:
+        - asset: assets/fonts/sahel.ttf
+        - asset: assets/fonts/sahel-bold.ttf
+          weight: 700
