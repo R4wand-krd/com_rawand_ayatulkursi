@@ -64,7 +64,7 @@ class _AboutPageState extends State<AboutPage> {
 
   Future<void> _checkVersion() async {
     final response = await http.get(Uri.parse(
-        'https://raw.githubusercontent.com/R4wand-krd/R4wand-krd/main/version.json'));
+        'https://raw.githubusercontent.com/R4wand-krd/com_rawand_ayatulkursi/master/appVerions.json'));
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       final latestVersion = data['version'];
@@ -78,8 +78,7 @@ class _AboutPageState extends State<AboutPage> {
             actionsAlignment: MainAxisAlignment.center,
             icon: const Icon(Icons.new_releases_outlined),
             title: Text('1.4.0'),
-            content: Text(
-                '# What is Changed\n\n## Added\n* Add ...\n\n## Changed\n- Change ...\n\n## Fixed\n- Fix ...'),
+            content: Text('check now the newest update'),
             actions: [
               TextButton(
                 child: const Text('Cancel'),
