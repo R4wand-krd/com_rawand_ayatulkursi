@@ -13,7 +13,7 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage> {
   bool darkMode = false;
-  final String _appVersion = "1.2.0";
+  final String _appVersion = "1.3.0";
   bool _isRTL = false;
   String _pageTitleAbout = 'About';
   String _appDescription =

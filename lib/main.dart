@@ -1,12 +1,12 @@
 import 'home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:url_strategy/url_strategy.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:dynamic_color/dynamic_color.dart';
 
-void main() {
-  setPathUrlStrategy();
-
-  runApp(AyatulKursi());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(new AyatulKursi());
 }
 
 class AyatulKursi extends StatelessWidget {
@@ -17,112 +17,139 @@ class AyatulKursi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<ThemeMode>(
-      valueListenable: themeSwitch,
-      builder: (_, ThemeMode currentMode, __) {
-        return MaterialApp(
-          theme: ThemeData(
-            colorScheme: ColorScheme.light().copyWith(
-              // Primary
-              primary: Color(0xFF984063),
-              onPrimary: Color(0xFFffffff),
-              primaryContainer: Color(0xFFffd9e5),
-              onPrimaryContainer: Color(0xFF3f001e),
-
-              // Secondary
-              secondary: Color(0xFF74565f),
-              onSecondary: Color(0xFFffffff),
-              secondaryContainer: Color(0xFFffd9e3),
-              onSecondaryContainer: Color(0xFF2b151d),
-
-              // Tertiary
-              tertiary: Color(0xFF7d5635),
-              onTertiary: Color(0xFFffffff),
-              tertiaryContainer: Color(0xFFffdcc0),
-              onTertiaryContainer: Color(0xFF2f1500),
-
-              // Error
-              error: Color(0xFFba1b1b),
-              onError: Color(0xFFffffff),
-              errorContainer: Color(0xFFffdad4),
-              onErrorContainer: Color(0xFF410001),
-
-              // Background
-              background: Color(0xFFfcfcfc),
-              onBackground: Color(0xFF1f1a1b),
-              surface: Color(0xFFfcfcfc),
-              onSurface: Color(0xFF1f1a1b),
-              surfaceVariant: Color(0xFFf2dee2),
-              onSurfaceVariant: Color(0xFF514347),
-
-              // Outline
-              outline: Color(0xFF837377),
-              shadow: Color(0xFF000000),
-              inverseSurface: Color(0xFF352f30),
-              onInverseSurface: Color(0xFFfaeeef),
-              inversePrimary: Color(0xFFffb0cb),
-
-              // Other
-            ),
-            fontFamily: 'Google',
-            useMaterial3: true,
-          ),
-          darkTheme: ThemeData(
-            colorScheme: ColorScheme.dark().copyWith(
-              // Primary
-              primary: Color(0xFFffb0cb),
-              onPrimary: Color(0xFF5e1135),
-              primaryContainer: Color(0xFF7a284b),
-              onPrimaryContainer: Color(0xFFffd9e5),
-
-              // Secondary
-              secondary: Color(0xFFe2bdc7),
-              onSecondary: Color(0xFF422931),
-              secondaryContainer: Color(0xFF5a4048),
-              onSecondaryContainer: Color(0xFFffd9e3),
-
-              // Tertiary
-              tertiary: Color(0xFFefbc94),
-              onTertiary: Color(0xFF48290c),
-              tertiaryContainer: Color(0xFF623f21),
-              onTertiaryContainer: Color(0xFFffdcc0),
-
-              // Error
-              error: Color(0xFFffb4a9),
-              onError: Color(0xFF680003),
-              errorContainer: Color(0xFF930006),
-              onErrorContainer: Color(0xFFffb4a9),
-
-              // Background
-              background: Color(0xFF1f1a1b),
-              onBackground: Color(0xFFebdfe1),
-              surface: Color(0xFF1f1a1b),
-              onSurface: Color(0xFFebdfe1),
-              surfaceVariant: Color(0xFF514347),
-              onSurfaceVariant: Color(0xFFd5c2c6),
-
-              // Outline
-              outline: Color(0xFF9d8c90),
-              shadow: Color(0xFF000000),
-              inverseSurface: Color(0xFFebdfe1),
-              onInverseSurface: Color(0xFF352f30),
-              inversePrimary: Color(0xFF984063),
-            ),
-            fontFamily: 'Google',
-            useMaterial3: true,
-          ),
-          themeMode: currentMode,
-          debugShowCheckedModeBanner: false,
-          home: AnnotatedRegion<SystemUiOverlayStyle>(
-            value: const SystemUiOverlayStyle(
-              statusBarColor: Colors.white,
-              statusBarBrightness: Brightness.dark,
-              statusBarIconBrightness: Brightness.dark,
-              systemNavigationBarColor: Colors.white,
-              systemNavigationBarIconBrightness: Brightness.dark,
-            ),
-            child: const HomePage(),
-          ),
+    return DynamicColorBuilder(
+      builder: (ColorScheme? lightDynamic, ColorScheme? darkDynamic) {
+        return ValueListenableBuilder<ThemeMode>(
+          valueListenable: themeSwitch,
+          builder: (_, ThemeMode currentMode, __) {
+            return MaterialApp(
+              themeMode: currentMode,
+              theme: ThemeData(
+                fontFamily: 'Google',
+                useMaterial3: true,
+                colorScheme: ColorScheme(
+                  brightness: Brightness.light,
+                  primary: lightDynamic?.primary ?? const Color(0xFF984063),
+                  onPrimary: lightDynamic?.onPrimary ?? const Color(0xFFFFFFFF),
+                  primaryContainer:
+                      lightDynamic?.primaryContainer ?? const Color(0xFFFFD9E3),
+                  onPrimaryContainer: lightDynamic?.onPrimaryContainer ??
+                      const Color(0xFF3E001F),
+                  secondary: lightDynamic?.secondary ?? const Color(0xFF74565F),
+                  onSecondary:
+                      lightDynamic?.onSecondary ?? const Color(0xFFFFFFFF),
+                  secondaryContainer: lightDynamic?.secondaryContainer ??
+                      const Color(0xFFFFD9E3),
+                  onSecondaryContainer: lightDynamic?.onSecondaryContainer ??
+                      const Color(0xFF2B151D),
+                  tertiary: lightDynamic?.tertiary ?? const Color(0xFF7D5635),
+                  onTertiary:
+                      lightDynamic?.onTertiary ?? const Color(0xFFFFFFFF),
+                  tertiaryContainer: lightDynamic?.tertiaryContainer ??
+                      const Color(0xFFFFDCC2),
+                  onTertiaryContainer: lightDynamic?.onTertiaryContainer ??
+                      const Color(0xFF2E1500),
+                  error: lightDynamic?.error ?? const Color(0xFFBA1A1A),
+                  errorContainer:
+                      lightDynamic?.errorContainer ?? const Color(0xFFFFDAD6),
+                  onError: lightDynamic?.onError ?? const Color(0xFFFFFFFF),
+                  onErrorContainer:
+                      lightDynamic?.onErrorContainer ?? const Color(0xFF410002),
+                  background:
+                      lightDynamic?.background ?? const Color(0xFFFFFBFF),
+                  onBackground:
+                      lightDynamic?.onBackground ?? const Color(0xFF201A1C),
+                  surface: lightDynamic?.surface ?? const Color(0xFFFFFBFF),
+                  onSurface: lightDynamic?.onSurface ?? const Color(0xFF201A1C),
+                  surfaceVariant:
+                      lightDynamic?.surfaceVariant ?? const Color(0xFFF2DDE2),
+                  onSurfaceVariant:
+                      lightDynamic?.onSurfaceVariant ?? const Color(0xFF514347),
+                  outline: lightDynamic?.outline ?? const Color(0xFF837377),
+                  onInverseSurface:
+                      lightDynamic?.onInverseSurface ?? const Color(0xFFFAEEEF),
+                  inverseSurface:
+                      lightDynamic?.inverseSurface ?? const Color(0xFF352F30),
+                  inversePrimary:
+                      lightDynamic?.inversePrimary ?? const Color(0xFFFFB0CA),
+                  shadow: lightDynamic?.shadow ?? const Color(0xFF000000),
+                  surfaceTint:
+                      lightDynamic?.surfaceTint ?? const Color(0xFF984063),
+                  outlineVariant:
+                      lightDynamic?.outlineVariant ?? const Color(0xFFD5C2C6),
+                  scrim: lightDynamic?.scrim ?? const Color(0xFF000000),
+                ),
+              ),
+              darkTheme: ThemeData(
+                fontFamily: 'Google',
+                useMaterial3: true,
+                colorScheme: ColorScheme(
+                  brightness: Brightness.dark,
+                  primary: darkDynamic?.primary ?? const Color(0xFFFFB0CA),
+                  onPrimary: darkDynamic?.onPrimary ?? const Color(0xFF5E1034),
+                  primaryContainer:
+                      darkDynamic?.primaryContainer ?? const Color(0xFF7B284B),
+                  onPrimaryContainer: darkDynamic?.onPrimaryContainer ??
+                      const Color(0xFFFFD9E3),
+                  secondary: darkDynamic?.secondary ?? const Color(0xFFE2BDC7),
+                  onSecondary:
+                      darkDynamic?.onSecondary ?? const Color(0xFF422931),
+                  secondaryContainer: darkDynamic?.secondaryContainer ??
+                      const Color(0xFF5A3F48),
+                  onSecondaryContainer: darkDynamic?.onSecondaryContainer ??
+                      const Color(0xFFFFD9E3),
+                  tertiary: darkDynamic?.tertiary ?? const Color(0xFFEFBC95),
+                  onTertiary:
+                      darkDynamic?.onTertiary ?? const Color(0xFF48290C),
+                  tertiaryContainer:
+                      darkDynamic?.tertiaryContainer ?? const Color(0xFF623F20),
+                  onTertiaryContainer: darkDynamic?.onTertiaryContainer ??
+                      const Color(0xFFFFDCC2),
+                  error: darkDynamic?.error ?? const Color(0xFFFFB4AB),
+                  errorContainer:
+                      darkDynamic?.errorContainer ?? const Color(0xFF93000A),
+                  onError: darkDynamic?.onError ?? const Color(0xFF690005),
+                  onErrorContainer:
+                      darkDynamic?.onErrorContainer ?? const Color(0xFFFFDAD6),
+                  background:
+                      darkDynamic?.background ?? const Color(0xFF201A1C),
+                  onBackground:
+                      darkDynamic?.onBackground ?? const Color(0xFFEBE0E1),
+                  surface: darkDynamic?.surface ?? const Color(0xFF201A1C),
+                  onSurface: darkDynamic?.onSurface ?? const Color(0xFFEBE0E1),
+                  surfaceVariant:
+                      darkDynamic?.surfaceVariant ?? const Color(0xFF514347),
+                  onSurfaceVariant:
+                      darkDynamic?.onSurfaceVariant ?? const Color(0xFFD5C2C6),
+                  outline: darkDynamic?.outline ?? const Color(0xFF9E8C90),
+                  onInverseSurface:
+                      darkDynamic?.onInverseSurface ?? const Color(0xFF201A1C),
+                  inverseSurface:
+                      darkDynamic?.inverseSurface ?? const Color(0xFFEBE0E1),
+                  inversePrimary:
+                      darkDynamic?.inversePrimary ?? const Color(0xFF984063),
+                  shadow: darkDynamic?.shadow ?? const Color(0xFF000000),
+                  surfaceTint:
+                      darkDynamic?.surfaceTint ?? const Color(0xFFFFB0CA),
+                  outlineVariant:
+                      darkDynamic?.outlineVariant ?? const Color(0xFF514347),
+                  scrim: darkDynamic?.scrim ?? const Color(0xFF000000),
+                ),
+              ),
+              debugShowCheckedModeBanner: false,
+              home: AnnotatedRegion<SystemUiOverlayStyle>(
+                value: SystemUiOverlayStyle(
+                  statusBarColor: Theme.of(context).colorScheme.background,
+                  statusBarBrightness: Brightness.dark,
+                  statusBarIconBrightness: Brightness.dark,
+                  systemNavigationBarColor:
+                      Theme.of(context).colorScheme.background,
+                  systemNavigationBarIconBrightness: Brightness.dark,
+                ),
+                child: const HomePage(),
+              ),
+            );
+          },
         );
       },
     );

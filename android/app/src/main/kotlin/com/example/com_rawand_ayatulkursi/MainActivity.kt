@@ -1,4 +1,4 @@
-package com.example.com_rawand_ayatulkursi
+package com.rawand.ayatulkursi
 
 import io.flutter.embedding.android.FlutterActivity
 

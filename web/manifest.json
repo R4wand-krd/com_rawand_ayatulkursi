@@ -5,24 +5,94 @@
   "display": "standalone",
   "background_color": "#984063",
   "theme_color": "#984063",
-  "description": "A new Flutter project.",
+  "description": "This app is created for those who want to read and listen to Ayat Al-Kursi daily.",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [
-    { "src": "/favicon.ico", "type": "image/x-icon", "sizes": "16x16 32x32" },
-    { "src": "icons/icon-192.png", "type": "image/png", "sizes": "192x192" },
-    { "src": "icons/icon-512.png", "type": "image/png", "sizes": "512x512" },
     {
-      "src": "icons/icon-192-maskable.png",
+      "src": "/favicon.ico",
+      "type": "image/x-icon",
+      "sizes": "16x16 32x32"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "/icons/icon-192-maskable.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "maskable"
     },
     {
-      "src": "icons/icon-512-maskable.png",
+      "src": "/icons/icon-512-maskable.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Home",
+      "short_name": "Home",
+      "description": "Open app to see Homescreen",
+      "url": "/home",
+      "icons": [
+        {
+          "src": "/logo.png",
+          "sizes": "512x512"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/1.png",
+      "sizes": "720x1459",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homescreen"
+    },
+    {
+      "src": "/screenshots/2.png",
+      "sizes": "720x1459",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homescreen"
+    },
+    {
+      "src": "/screenshots/3.png",
+      "sizes": "720x1459",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homescreen"
+    },
+    {
+      "src": "/screenshots/4.png",
+      "sizes": "720x1459",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homescreen"
+    },
+    {
+      "src": "/screenshots/5.png",
+      "sizes": "720x1459",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homescreen"
+    },
+    {
+      "src": "/screenshots/6.png",
+      "sizes": "720x1459",
+      "type": "image/png",
+      "platform": "wide",
+      "label": "Homescreen"
     }
   ]
 }
