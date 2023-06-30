@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:com_rawand_ayatulkursi/setting/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,6 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  AudioPlayer audioPlayer = AudioPlayer();
+  bool isPlaying = false;
+
   bool _isRTL = false;
   String _quranTranslation =
       'Allah! There is no god but He - the Living, the Self-subsisting, Eternal. No slumber can seize Him nor Sleep. His are all things in the heavens and on earth. Who is there that can intercede in His presence except as he permitteth? He knoweth what (appeareth to His creatures As) Before or After or Behind them. Nor shall they compass aught of His knowledge except as He willeth. His throne doth extend over the heavens and on earth, and He feeleth no fatigue in guarding and preserving them, For He is the Most High, the Supreme (in glory).';
@@ -479,6 +483,19 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            if (isPlaying) {
+              audioPlayer.pause();
+            } else {
+              audioPlayer.play('assets/audio/ayatul-kursi.mp3', isLocal: true);
+            }
+            setState(() {
+              isPlaying = !isPlaying;
+            });
+          },
+          child: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
         ),
       ),
     );
